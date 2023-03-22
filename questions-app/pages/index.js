@@ -1,17 +1,13 @@
 // install node.js 18.12.1 version
 import Head from 'next/head'
 import Display from '../comps/Display'
-// import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import formSchema from '@/utilities/formSchema'
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
-// import 'boxicons'
 const initialState = { answer: '', question: 'What will I learn?', website: 'https://www.verywellfit.com/tips-for-walking-technique-3435093' }
-
-// const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Experiment() {
