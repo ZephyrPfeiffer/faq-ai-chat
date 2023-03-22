@@ -28,66 +28,6 @@ export default function Experiment() {
   const [log, setLog] = useState([])
   const [sendQuestion, setSendQuestion] = useState(false)
 
-  /*  function formSubmit(e) {
-     e.preventDefault();
-     console.log('submitting form')
-     setSendQuestion(true)
-   }
- 
-   const fetchData = async () => {
-     try {
-       console.log(question)
- 
-       const validatedFormData = await formSchema.validate(
-         {
-           question: question,
-           website: website,
-         },
-         { strict: true },
-       );
- 
-       const res = await fetch("api/answer", {
-         method: 'POST',
-         body: JSON.stringify({ question: validatedFormData.question, website: validatedFormData.website })
-       })
- 
-       const data = await res.json();
-       return data
-     } catch (error) {
-       console.log(error.message)
-     }
-   }
- 
-   const callAPI = async () => {
-     try {
-       // makes fetch request to backend api
-       const data = await fetchData()
-       // console.log(data)
-       setAnswer(data.text)
- 
-       console.log(answer)
- 
-     } catch (err) {
-       console.log(err);
-     }
-   }
-   useEffect(() => {
-     if (sendQuestion) {
-       callAPI();
-       setSendQuestion(false)
-     }
- 
-   }, [sendQuestion])
- 
-   useEffect(() => {
-     if (answer) {
-       setLog([...log, { question: question, answer: answer }])
-       setAnswer(initialState.answer)
-       setQuestion(initialState.question)
-     }
-   }, [answer])
- 
-  */
   async function onSubmit(formData) {
     try {
       const question = formData.question
@@ -144,7 +84,6 @@ export default function Experiment() {
           <label htmlFor="website-input">What website:</label>
           <input id="website-input" className={styles.question_input} {...register("website")} type="text" />
           <span>{errors.website?.message}</span><br />
-          {/* <button type="submit">Hello</button> */}
           <input type="button" value="Submit" onClick={handleSubmit((data) => onSubmit(data))} />
         </form>
       </section>
