@@ -74,23 +74,27 @@ export default async function handler(req, res) {
   try {
     const model = new OpenAI({ openAIApiKey: process.env.OPENAI_API_KEY, temperature: 0.9, concurrency: 10, cache: true });
     const body = JSON.parse(req.body)
-    console.log(body.question)
 
-    const website = await axios.get(body.website)
-    const html = website.data;
-    const chain = loadQAChain(model);
+    const websiteResponse = await fetch(body.website)
 
-    const $ = cheerio.load(html, { ignoreWhitespace: true, scriptingEnabled: false });
+    if(websiteResponse.ok) {
+      const website = await axios.get(body.website)
+      const html = website.data;
+      const chain = loadQAChain(model);
 
-    $('script').remove()
+      const $ = cheerio.load(html, { ignoreWhitespace: true, scriptingEnabled: false });
 
-    const text = $('body').text();
-    const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
-    const docs = filteredText.map(sentence => new Document({ pageContent: sentence }))
+      $('script').remove()
 
-    res.json(await chain.call({ question: body.question, input_documents: docs }))
+      const text = $('body').text();
+      const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
+      const docs = filteredText.map(sentence => new Document({ pageContent: sentence }))
 
-    console.log(res);
+      res.json(await chain.call({ question: body.question, input_documents: docs }))
+    }else {
+      res.status(404).json('Website not found')
+    }
+      
   } catch (error) {
     res.json(error)
   }
