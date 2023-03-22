@@ -4,65 +4,114 @@ import Display from '../comps/Display'
 // import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
+import formSchema from '@/utilities/formSchema'
+import * as Yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from "react-hook-form";
 // import 'boxicons'
-const initialState = { answer: '', question: '', website: 'https://www.wikihow.com/Cook' }
+const initialState = { answer: '', question: 'What will I learn?', website: 'https://www.verywellfit.com/tips-for-walking-technique-3435093' }
 
 // const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Experiment() {
+  const { register, handleSubmit, watch, resetField, formState: { errors } } = useForm({
+    defaultValues: {
+      question: initialState.question,
+      website: initialState.website,
+    }, resolver: yupResolver(formSchema)
+  });
+
   const [answer, setAnswer] = useState(initialState.answer)
-  const [question, setQuestion] = useState(initialState.question)
-  const [website, setWebsite] = useState(initialState.website)
+  // const [question, setQuestion] = useState(initialState.question)
+  // const [website, setWebsite] = useState(initialState.website)
   const [log, setLog] = useState([])
   const [sendQuestion, setSendQuestion] = useState(false)
 
-  function formSubmit(e) {
-    e.preventDefault();
-    console.log('submitting form')
-    setSendQuestion(true)
-  }
-
-  const fetchData = async () => {
-    console.log(question)
-    const res = await fetch("api/answer", {
-      method: 'POST',
-      body: JSON.stringify({ question: question, website: website })
-    })
-
-    const data = await res.json();
-    return data
-  }
-
-  const callAPI = async () => {
+  /*  function formSubmit(e) {
+     e.preventDefault();
+     console.log('submitting form')
+     setSendQuestion(true)
+   }
+ 
+   const fetchData = async () => {
+     try {
+       console.log(question)
+ 
+       const validatedFormData = await formSchema.validate(
+         {
+           question: question,
+           website: website,
+         },
+         { strict: true },
+       );
+ 
+       const res = await fetch("api/answer", {
+         method: 'POST',
+         body: JSON.stringify({ question: validatedFormData.question, website: validatedFormData.website })
+       })
+ 
+       const data = await res.json();
+       return data
+     } catch (error) {
+       console.log(error.message)
+     }
+   }
+ 
+   const callAPI = async () => {
+     try {
+       // makes fetch request to backend api
+       const data = await fetchData()
+       // console.log(data)
+       setAnswer(data.text)
+ 
+       console.log(answer)
+ 
+     } catch (err) {
+       console.log(err);
+     }
+   }
+   useEffect(() => {
+     if (sendQuestion) {
+       callAPI();
+       setSendQuestion(false)
+     }
+ 
+   }, [sendQuestion])
+ 
+   useEffect(() => {
+     if (answer) {
+       setLog([...log, { question: question, answer: answer }])
+       setAnswer(initialState.answer)
+       setQuestion(initialState.question)
+     }
+   }, [answer])
+ 
+  */
+  async function onSubmit(formData) {
     try {
-      // makes fetch request to backend api
-      const data = await fetchData()
-      // console.log(data)
-      setAnswer(data.text)
+      const question = formData.question
+      const website = formData.website
+      const res = await fetch("api/answer", {
+        method: 'POST',
+        body: JSON.stringify({ question: question, website: website })
+      })
 
-      console.log(answer)
+      console.log(res.status)
 
-    } catch (err) {
-      console.log(err);
+      if(res.status !== 404) {
+        const data = await res.json();
+        setLog([...log, { question: formData.question, answer: data.text }])
+      }
+
+    } catch (error) {
+      console.log(error.message)
     }
   }
-  useEffect(() => {
-    if (sendQuestion) {
-      callAPI();
-      setSendQuestion(false)
-    }
-
-  }, [sendQuestion])
 
   useEffect(() => {
-    if (answer) {
-      setLog([...log, { question: question, answer: answer }])
-      setAnswer(initialState.answer)
-      setQuestion(initialState.question)
-    }
-  }, [answer])
-
+    resetField("question")
+  }, [log])
 
   return (
     <>
@@ -88,12 +137,15 @@ export default function Experiment() {
 
 
       <section className={styles.form_container}>
-        <form className={styles.question_form} onSubmit={formSubmit}>
+        <form className={styles.question_form} onSubmit={handleSubmit((data) => onSubmit(data))}>
           <label htmlFor="question-input">Ask grammerhub a question:</label>
-          <input id="question-input" className={styles.question_input} type="text" value={question} onChange={(e) => setQuestion(e.target.value)}></input>
+          <input id="question-input" className={styles.question_input} {...register("question")} type="text" />
+          <span>{errors.question?.message}</span><br />
           <label htmlFor="website-input">What website:</label>
-          <input id="website-input" className={styles.question_input} type="text" value={website} onChange={(e) => setWebsite(e.target.value)}></input>
-          <button type="submit">Hello</button>
+          <input id="website-input" className={styles.question_input} {...register("website")} type="text" />
+          <span>{errors.website?.message}</span><br />
+          {/* <button type="submit">Hello</button> */}
+          <input type="button" value="Submit" onClick={handleSubmit((data) => onSubmit(data))} />
         </form>
       </section>
       <footer>
@@ -110,7 +162,7 @@ export default function Experiment() {
         </div>
 
         <div className='acknowledgements'>
-          <p>Built by: Zephyr, Lia, Branden, & Andrea</p>
+          <p>Built by: Zephyr, Steve & Andrea</p>
         </div>
       </footer>
     </>
