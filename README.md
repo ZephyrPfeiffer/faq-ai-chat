@@ -1,53 +1,14 @@
-<<<<<<< HEAD
-# Grammerhub Miami Hack 2023
+# FAQ AI Chat
 
-## Contributing an FAQ Page
+## Description
 
-Create an Next.js app
-```sh
-# navigate to the faq-pages folder
-cd faq-pages
-# create your faq app
-npx create-next-app@latest
-# cd into your app and get started
-```
+App utilizes Open AI and Cheerio to scrape a webpage and answer a question about that page.
 
-## Contributing to our Beam App
+## Get Started
 
-TODO
-
-
-## Contributing to the Questions App
-
-```sh
-cd questions-app
-npm install
-npm run dev
-```
-=======
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Clone repo and `npm install`
+Retrieve open AI key and add to .env.local file
+Run `npm run dev`
 
 ## Learn More
 
@@ -63,4 +24,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
->>>>>>> 7943bc9 (moving project to root)
+
