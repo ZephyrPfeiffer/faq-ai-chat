@@ -15,7 +15,6 @@ export default async function handler(req, res) {
 
     if(websiteResponse.ok) {
       const html = await websiteResponse.text();
-      console.log(html)
       const chain = loadQAChain(model);
 
       const $ = cheerio.load(html, { ignoreWhitespace: true, scriptingEnabled: false });

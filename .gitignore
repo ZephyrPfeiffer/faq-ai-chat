@@ -1,12 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 
-=======
->>>>>>> 7943bc9 (moving project to root)
 # dependencies
 /node_modules
 /.pnp
