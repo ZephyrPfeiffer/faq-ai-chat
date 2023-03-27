@@ -1,25 +1,27 @@
-# Grammerhub Miami Hack 2023
+# FAQ AI Chat
 
-## Contributing an FAQ Page
+## Description
 
-Create an Next.js app
-```sh
-# navigate to the faq-pages folder
-cd faq-pages
-# create your faq app
-npx create-next-app@latest
-# cd into your app and get started
-```
+App utilizes Open AI and Cheerio to scrape a webpage and answer a question about that page.
 
-## Contributing to our Beam App
+## Get Started
 
-TODO
+Clone repo and `npm install`
+Retrieve open AI key and add to .env.local file
+Run `npm run dev`
 
+## Learn More
 
-## Contributing to the Questions App
+To learn more about Next.js, take a look at the following resources:
 
-```sh
-cd questions-app
-npm install
-npm run dev
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+

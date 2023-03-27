@@ -1,5 +1,5 @@
 {
-  "name": "amarquez-faq",
+  "name": "questions-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "@next/font": "13.1.6",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.27",
-    "@types/react-dom": "18.0.10",
+    "axios": "^1.3.4",
+    "boxicons": "^2.1.4",
+    "cheerio": "^1.0.0-rc.12",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
+    "langchain": "^0.0.24",
+    "lodash": "^4.17.21",
     "next": "13.1.6",
+    "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.5"
+    "react-hook-form": "^7.43.5",
+    "yup": "^1.0.2"
   }
 }

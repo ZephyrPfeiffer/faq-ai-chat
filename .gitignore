@@ -34,5 +34,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+<<<<<<< HEAD
 
 venv
+=======
+>>>>>>> 7943bc9 (moving project to root)
