@@ -7,7 +7,9 @@ App utilizes Open AI and Cheerio to scrape a webpage and answer a question about
 ## Get Started
 
 Clone repo and `npm install`
+
 Retrieve open AI key and add to .env.local file
+
 Run `npm run dev`
 
 ## Learn More

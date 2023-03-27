@@ -4,9 +4,10 @@ import Display from '../comps/Display'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import formSchema from '@/utilities/formSchema'
-import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 const initialState = { answer: '', question: 'What will I learn?', website: 'https://www.verywellfit.com/tips-for-walking-technique-3435093' }
 
 
@@ -22,12 +23,19 @@ export default function Experiment() {
   // const [question, setQuestion] = useState(initialState.question)
   // const [website, setWebsite] = useState(initialState.website)
   const [log, setLog] = useState([])
+  const [loading, setLoading] = useState(false)
   const [sendQuestion, setSendQuestion] = useState(false)
-
+  let currentQuestion = watch({name: 'question'})
+  console.log(currentQuestion)
   async function onSubmit(formData) {
+
+    setLoading(true);
+    const question = formData.question;
+    await setLog([...log, { question: formData.question, answer: '' }])
     try {
-      const question = formData.question
-      const website = formData.website
+      // const question = formData.question;
+      // console.log(question)
+      const website = formData.website;
       const res = await fetch("api/answer", {
         method: 'POST',
         body: JSON.stringify({ question: question, website: website })
@@ -37,11 +45,20 @@ export default function Experiment() {
 
       if(res.status !== 404) {
         const data = await res.json();
-        setLog([...log, { question: formData.question, answer: data.text }])
+        // let newLog = [...log]
+        // newLog[newLog.length - 1].answer = data.text;
+        // setLog(newLog)
+        setLog([...log, { question: question, answer: data.text }])
+      }else {
+        toast('Website not found')
+        setLog([...log])
       }
+
+      setLoading(false)
 
     } catch (error) {
       console.log(error.message)
+      setLoading(false)
     }
   }
 
@@ -69,8 +86,11 @@ export default function Experiment() {
         </div>
       </div>
 
-      <Display style={styles} log={log} />
+      <Display style={styles} loading={loading} log={log} />
 
+      <ToastContainer 
+        position='top-center'
+      />
 
       <section className={styles.form_container}>
         <form className={styles.question_form} onSubmit={handleSubmit((data) => onSubmit(data))}>
