@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 import formSchema from '@/utilities/formSchema'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, useWatch } from "react-hook-form";
-import {ToastContainer, toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-const initialState = { answer: '', question: 'What will I learn?', website: 'https://www.verywellfit.com/tips-for-walking-technique-3435093' }
+const initialState = { answer: '', question: 'What will I learn?', website: 'https://www.grammerhub.org/faqs' }
 
 
 export default function Experiment() {
@@ -25,7 +25,7 @@ export default function Experiment() {
   const [log, setLog] = useState([])
   const [loading, setLoading] = useState(false)
   const [sendQuestion, setSendQuestion] = useState(false)
-  let currentQuestion = watch({name: 'question'})
+  let currentQuestion = watch({ name: 'question' })
   console.log(currentQuestion)
   async function onSubmit(formData) {
 
@@ -43,13 +43,13 @@ export default function Experiment() {
 
       console.log(res.status)
 
-      if(res.status !== 404) {
+      if (res.status !== 404) {
         const data = await res.json();
         // let newLog = [...log]
         // newLog[newLog.length - 1].answer = data.text;
         // setLog(newLog)
         setLog([...log, { question: question, answer: data.text }])
-      }else {
+      } else {
         toast('Website not found')
         setLog([...log])
       }
@@ -88,7 +88,7 @@ export default function Experiment() {
 
       <Display style={styles} loading={loading} log={log} />
 
-      <ToastContainer 
+      <ToastContainer
         position='top-center'
       />
 
