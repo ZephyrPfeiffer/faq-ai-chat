@@ -5,7 +5,6 @@ import { loadQAChain } from "langchain/chains";
 import { Document } from "langchain/document";
 import * as cheerio from 'cheerio'
 import puppeteer from 'puppeteer'
-import chromium from 'chromium';
 
 
 export default async function handler(req, res) {
