@@ -5,10 +5,11 @@ import { loadQAChain } from "langchain/chains";
 import { Document } from "langchain/document";
 import * as cheerio from 'cheerio'
 import puppeteer from 'puppeteer'
+// import chromium from 'chrome-aws-lambda';
 
 
 export default async function handler(req, res) {
-  const browser = await puppeteer.launch({ headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
 
