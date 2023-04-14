@@ -8,7 +8,7 @@ import puppeteer from 'puppeteer'
 
 
 export default async function handler(req, res) {
-  const browser = await puppeteer.launch({ headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+  const browser = await puppeteer.launch({ headless: true});
   const page = await browser.newPage();
 
 
@@ -21,16 +21,11 @@ export default async function handler(req, res) {
       const chain = loadQAChain(model);
 
       await page.goto(body.website, { timeout: 180000 });
-      const html = await page.evaluate(() => document.body.innerHTML)
-      const $ = cheerio.load(html, { ignoreWhitespace: true, scriptingEnabled: false });
-
-      $('script').remove()
-
-      const text = $('body').text();
+      const text = await page.$eval(('*'), (el) => el.innerText)
       const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
+      
       const docs = filteredText.map(sentence => new Document({ pageContent: sentence }))
 
-      console.log(docs)
       res.json(await chain.call({ question: body.question, input_documents: docs }))
     } else {
       res.status(404).json('Website not found')
