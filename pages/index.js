@@ -49,7 +49,7 @@ export default function Experiment() {
 
       if (res.status !== 404) {
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
         if (data.status === 400) {
           toast('Unable to read website')
           setLog([...log])
