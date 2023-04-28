@@ -98,7 +98,7 @@ export default function Experiment() {
 				errors={errors}
 				onSubmit={onSubmit}
 			/>
-			<Display style={styles} loading={loading} log={log} />
+			<Display loading={loading} log={log} />
 			<Footer />
 		</>
 	);
