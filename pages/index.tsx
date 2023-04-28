@@ -14,7 +14,6 @@ import Footer from '../comps/Footer';
 import Form from '../comps/Form';
 
 // styles
-import styles from '../styles/Home.module.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // utils
@@ -99,7 +98,7 @@ export default function Experiment() {
 				errors={errors}
 				onSubmit={onSubmit}
 			/>
-			<Display style={styles} loading={loading} log={log} />
+			<Display loading={loading} log={log} />
 			<Footer />
 		</>
 	);
