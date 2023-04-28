@@ -45,6 +45,15 @@ server
 			const browser = await puppeteer.launch({
 				headless: 'new',
 				ignoreHTTPSErrors: true,
+				args: [
+					'--disable-gpu',
+					'--disable-dev-shm-usage',
+					'--disable-setuid-sandbox',
+					'--no-first-run',
+					'--no-sandbox',
+					'--no-zygote',
+					'--single-process',
+				],
 			});
 			const page = await browser.newPage();
 
@@ -63,6 +72,7 @@ server
 				await page.goto(website, { timeout: 180000 });
 
 				// scrape the page 🕷️
+				// @ts-ignore
 				const text = await page.$eval('*', (el) => el.innerText);
 				const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
 				const docs = filteredText.map(
