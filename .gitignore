@@ -32,11 +32,9 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
-<<<<<<< HEAD
 
 venv
-=======
->>>>>>> 7943bc9 (moving project to root)
