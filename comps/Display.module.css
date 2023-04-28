@@ -1,9 +1,24 @@
 .display {
-  max-width: 330px;
   min-height: 50vh;
+  max-width: 80%;
   margin: 0 auto 1rem;
-  border: solid purple 8px;
+  border: solid white 1px;
   border-radius: 10px;
   padding: 8px;
-  background-color: #ddd;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (min-width: 600px) {
+  .display {
+    max-width: 80%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .display {
+    max-width: 50%;
+    min-height: 50vh;
+    margin: 3rem auto 15rem;
+  }
 }

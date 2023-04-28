@@ -1,11 +1,18 @@
 .line {
-    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
     color: black;
-    background-color: yellow;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.10);
+    border: solid 2px #2EE59D;
+    border-radius: 8px;
+    box-shadow: 0px 15px 20px rgba(56, 229, 157, 0.4);
     border-radius: 10px;
     padding: .5rem;
     font-size: 1.3rem;
-    margin-bottom: .25rem;
     max-width: 80%;
   }
+
+  /* .question-container {
+    display: flex;
+    flex-direction: column;
+  } */
