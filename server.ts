@@ -63,6 +63,7 @@ server
 				await page.goto(website, { timeout: 180000 });
 
 				// scrape the page 🕷️
+				// @ts-ignore
 				const text = await page.$eval('*', (el) => el.innerText);
 				const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
 				const docs = filteredText.map(
