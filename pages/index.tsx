@@ -19,68 +19,79 @@ import 'react-toastify/dist/ReactToastify.min.css';
 // utils
 import formSchema from '../utilities/formSchema';
 
+// types
+interface FormData {
+	answer: string;
+	question: string;
+	website: string;
+}
+
 const initialState = {
-  answer: '',
-  question: 'What will I learn?',
-  website: 'https://www.grammerhub.org/',
+	answer: '',
+	question: 'What will I learn?',
+	website: 'https://www.grammerhub.org/',
 };
 
 export default function Experiment() {
-  const {
-    register,
-    handleSubmit,
-    resetField,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      question: initialState.question,
-      website: initialState.website,
-    },
-    resolver: yupResolver(formSchema),
-  });
+	const {
+		register,
+		handleSubmit,
+		resetField,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			question: initialState.question,
+			website: initialState.website,
+		},
+		resolver: yupResolver(formSchema),
+	});
 
-  const [log, setLog] = useState([]);
-  const [loading, setLoading] = useState(false);
+	const [log, setLog] = useState([]);
+	const [loading, setLoading] = useState(false);
 
-  async function onSubmit(formData) {
-    setLoading(true);
-    const { question } = formData;
-    setLog([...log, { question, answer: '' }]);
-    try {
-      const website = formData.website;
-      const res = await fetch('api/answer', {
-        method: 'POST',
-        body: JSON.stringify({ question, website }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+	const onSubmit = async (formData: FormData) => {
+		if (loading) return;
 
-      if (res.status === 404) {
-        toast('Website not found');
-        setLog([...log]);
-        return;
-      }
+		setLoading(true);
 
-      const data = await res.json();
+		const { question, website } = formData;
 
-      if (data.status === 400) {
-        toast('Unable to read website');
-        setLog([...log]);
-        return;
-      }
+		setLog([...log, { question, answer: '' }]);
 
-      setLog([...log, { question, answer: data.text }]);
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+		try {
+			const res = await fetch('/api/answer', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ question, website }),
+			});
 
-  useEffect(() => {
-    resetField('question');
-  }, [log]);
+			if (res.status === 404) {
+				toast('Website not found');
+				setLog([...log]);
+				return;
+			}
+
+			const data = await res.json();
+
+			if (data.status === 400) {
+				toast('Unable to read website');
+				setLog([...log]);
+				return;
+			}
+
+			setLog([...log, { question, answer: data.text }]);
+		} catch (error) {
+			console.log(error.message);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		resetField('question');
+	}, [log]);
 
 	return (
 		<>
