@@ -28,8 +28,8 @@ interface FormData {
 
 const initialState = {
 	answer: '',
-	question: 'What will I learn?',
-	website: 'https://www.grammerhub.org/',
+	question: '',
+	website: '',
 };
 
 export default function Experiment() {
