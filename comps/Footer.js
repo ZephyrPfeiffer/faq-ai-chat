@@ -15,7 +15,7 @@ const Footer = () => {
       </div>
 
       <div className='acknowledgements'>
-        <p>Built by: Zephyr, Steve & Andrea</p>
+        <p>Built by: Zephyr, Steve, Andrea & Jake</p>
       </div>
     </footer>
   )
