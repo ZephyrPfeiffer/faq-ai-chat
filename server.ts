@@ -44,11 +44,23 @@ server
 			// instantiate puppeteer
 			const browser = await puppeteer.launch({
 				headless: 'new',
+        ignoreHTTPSErrors: true,
+        args: [
+          '--disable-gpu',
+          '--disable-dev-shm-usage',
+          '--disable-setuid-sandbox',
+          '--no-first-run',
+          '--no-sandbox',
+          '--no-zygote',
+          '--single-process',
+        ],
 			});
+
 			const page = await browser.newPage();
 
 			// process the page
 			try {
+
 				// navigate to the page via Puppeteer
 				await page
 					.goto(website, {
@@ -82,6 +94,8 @@ server
 					question,
 					input_documents: docs,
 				});
+
+        console.log(data)
 
 				res.send(data);
 			} catch (error) {
