@@ -11,6 +11,7 @@
 		"start": "cross-env NODE_ENV=production node dist/server.js"
 	},
 	"dependencies": {
+		"@dqbd/tiktoken": "^1.0.7",
 		"@hookform/resolvers": "^2.9.11",
 		"@next/font": "13.1.6",
 		"boxicons": "^2.1.4",

@@ -8,6 +8,7 @@ import multer from 'multer';
 import next from 'next';
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer';
+import { get_encoding } from '@dqbd/tiktoken';
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = 3000;
@@ -71,8 +72,9 @@ server
 				// scrape the page 🕷️
 				// @ts-ignore
 				const text = await page.$eval('*', (el) => el.innerText);
-
 				const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
+        const encoding = get_encoding('gpt2')
+        const tokens = encoding.encode(filteredText.join(''))
 				const docs = filteredText.map(
 					(pageContent) => new Document({ pageContent })
 				);
@@ -87,6 +89,7 @@ server
 					concurrency: 10,
 					cache: true,
 				});
+
 				const chain = loadQAChain(model);
 
 				// // evaluate the data
@@ -94,8 +97,6 @@ server
 					question,
 					input_documents: docs,
 				});
-
-        console.log(data)
 
 				res.send(data);
 			} catch (error) {
