@@ -46,6 +46,7 @@ server
 			const browser = await puppeteer.launch({
 				headless: 'new',
         ignoreHTTPSErrors: true,
+        args: ['--no-sandbox']
 			});
 
 			const page = await browser.newPage();
