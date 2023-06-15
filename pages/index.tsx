@@ -103,7 +103,14 @@ export default function Experiment() {
 			</Head>
 			<Explainer />
 			<ToastContainer position='top-center' />
-			<Display loading={loading} log={log} />
+			<Display 
+        loading={loading} 
+        log={log}
+        handleSubmit={handleSubmit}
+				register={register}
+				errors={errors}
+				onSubmit={onSubmit}
+      />
       <Form
 				handleSubmit={handleSubmit}
 				register={register}
