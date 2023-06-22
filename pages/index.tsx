@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Display from '../comps/Display';
 import Explainer from '../comps/Explainer';
 import Footer from '../comps/Footer';
-import Form from '../comps/Form';
+import WebsiteForm from '../comps/WebsiteForm';
 
 // styles
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -111,7 +111,7 @@ export default function Experiment() {
 				errors={errors}
 				onSubmit={onSubmit}
       />
-      <Form
+      <WebsiteForm
 				handleSubmit={handleSubmit}
 				register={register}
 				errors={errors}
