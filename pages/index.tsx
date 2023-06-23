@@ -47,7 +47,7 @@ export default function Experiment() {
 		resolver: yupResolver(formSchema),
 	});
 
-	const [log, setLog] = useState([{question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}, {question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}, {question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}]);
+	const [log, setLog] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	const onSubmit = async (formData: FormData) => {
@@ -107,10 +107,6 @@ export default function Experiment() {
 			<Display 
         loading={loading} 
         log={log}
-        handleSubmit={handleSubmit}
-				register={register}
-				errors={errors}
-				onSubmit={onSubmit}
       />
       <QuestionForm 
         handleSubmit={handleSubmit} 
