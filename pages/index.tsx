@@ -46,7 +46,7 @@ export default function Experiment() {
 		resolver: yupResolver(formSchema),
 	});
 
-	const [log, setLog] = useState([]);
+	const [log, setLog] = useState([{question: 'what will I learn', answer: 'nothing'}]);
 	const [loading, setLoading] = useState(false);
 
 	const onSubmit = async (formData: FormData) => {
