@@ -1,12 +1,13 @@
 .display {
-  position: relative;
-  min-height: 50vh;
+  height: 70vh;
   max-width: 100%;
-  margin: 0 auto 1rem;
+  position: relative;
+  margin: 0 auto 0;
   /* border-radius: 10px; */
   padding: 8px;
   background: rgba(255, 255, 255, 0.75);
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
 }
 
 @media only screen and (min-width: 600px) {
@@ -18,7 +19,8 @@
 @media only screen and (min-width: 992px) {
   .display {
     max-width: 50%;
-    min-height: 50vh;
-    margin: 3rem auto 3rem;
+    height: 50vh;
+    margin: 2rem auto 0;
+    /* border-radius: 10px 10px 0 0; */
   }
 }

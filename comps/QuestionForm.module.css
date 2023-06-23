@@ -4,9 +4,7 @@
   display: flex;
   position: relative;
   justify-content: flex-start;
-  position: absolute;
-  bottom: 0%;
-  left: 0;
+  margin-bottom: 2rem;
 }
 
 .question_form {
@@ -45,7 +43,6 @@
   height: 100%;
   font-size: 1.3rem;
   padding: .5rem 1rem;
-  /* border-radius: 8px; */
 }
 
 .form_button {
@@ -81,14 +78,6 @@
     /* max-width: 80%; */
   }
   
-  .question_form {
-   
-  }
-  
-  .question_form label {
-  
-  }
-  
   .question_input {
    
   }
@@ -100,22 +89,16 @@
 
 @media only screen and (min-width: 992px) {
   .form_container {
-    /* max-width: 50%; */
-  }
-  
-  .question_form {
-   
-  }
-  
-  .question_form label {
-  
+    max-width: 50%;
+    margin: 0 auto 2rem auto;
+    /* border-radius: 0 0 10px 10px; */
   }
   
   .question_input {
- 
+    /* border-radius: 0 0 10px 0; */
   }
   
   .form_button {
-    /* margin-left: 7rem; */
+    /* border-radius: 0 0 0 10px; */
   }
 } 

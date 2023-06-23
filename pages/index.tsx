@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Display from '../comps/Display';
 import Explainer from '../comps/Explainer';
 import Footer from '../comps/Footer';
+import QuestionForm from '../comps/QuestionForm';
 import WebsiteForm from '../comps/WebsiteForm';
 
 // styles
@@ -46,7 +47,7 @@ export default function Experiment() {
 		resolver: yupResolver(formSchema),
 	});
 
-	const [log, setLog] = useState([]);
+	const [log, setLog] = useState([{question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}, {question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}, {question: 'what will I learn?', answer: 'The current news is that Grammerhub recently participated in the South Florida Tech Hub 🌴 Hack My City Hackathon with many of its South Florida members (“Grammers”) and got together as a group for the first time since they started in March of 2020.'}]);
 	const [loading, setLoading] = useState(false);
 
 	const onSubmit = async (formData: FormData) => {
@@ -110,6 +111,12 @@ export default function Experiment() {
 				register={register}
 				errors={errors}
 				onSubmit={onSubmit}
+      />
+      <QuestionForm 
+        handleSubmit={handleSubmit} 
+        register={register} 
+        errors={errors} 
+        onSubmit={onSubmit}
       />
       <WebsiteForm
 				handleSubmit={handleSubmit}
