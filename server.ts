@@ -39,8 +39,14 @@ server
 			const { website, question } = req.body;
 
 			// validate the requested URL
-			const websiteResponse = await fetch(website);
-			if (!websiteResponse.ok) return res.status(404).json('Website not found');
+      try {
+
+        const websiteResponse = await fetch(website);
+        if (!websiteResponse.ok) return res.status(404).json('Website not found');
+
+      }catch(error) {
+        return res.status(404).json('Website not found');
+      }
 
 			// instantiate puppeteer
 			const browser = await puppeteer.launch({
