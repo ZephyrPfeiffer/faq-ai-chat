@@ -8,7 +8,13 @@ import multer from 'multer';
 import next from 'next';
 import fetch from 'node-fetch';
 import puppeteer from 'puppeteer';
-import { get_encoding } from '@dqbd/tiktoken';
+import { get_encoding, encoding_for_model } from '@dqbd/tiktoken';
+
+// to do's
+/*
+  enforce a token size limit for all requests being sent to ai 
+  update footer/social section (add structure and socials)
+*/
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = 3000;
@@ -71,16 +77,35 @@ server
 				// @ts-ignore
 				const text = await page.$eval('*', (el) => el.innerText);
 				const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
-        const encoding = get_encoding('gpt2')
-        const tokens = encoding.encode(filteredText.join(''))
-				const docs = filteredText.map(
+
+        // reduce size of filtered text to be under token limit (if above token limit) for ai being used
+        const encoding = encoding_for_model("text-davinci-003");
+        const tokenLimit = 3700;
+        let tokenSum = 0;
+        let validDocuments = [];
+
+        for(let i = 0; i < filteredText.length; i++) {
+
+          tokenSum += Number(encoding.encode(filteredText[i]).length);
+
+          if(tokenSum > tokenLimit) {
+            break;
+          }
+
+          validDocuments.push(filteredText[i]);
+
+        }
+
+        // const tokens = encoding.encode(filteredText.join(''))
+        // console.log(tokens.length)
+				const docs = validDocuments.map(
 					(pageContent) => new Document({ pageContent })
 				);
 
 				// // close Puppeteer
 				await browser.close();
 
-				// // instantiate the model
+				// // instantiate the model (model: text-davinci-003)
 				const model = new OpenAI({
 					openAIApiKey: process.env.OPENAI_API_KEY,
 					temperature: 0.9,
