@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './QuestionForm.module.css'
+import { ErrorMessage } from '@hookform/error-message'
 
 const QuestionForm = ({ handleSubmit, onSubmit, register, errors }) => {
 

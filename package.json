@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@dqbd/tiktoken": "^1.0.7",
+		"@hookform/error-message": "^2.0.1",
 		"@hookform/resolvers": "^2.9.11",
 		"@next/font": "13.1.6",
 		"boxicons": "^2.1.4",
