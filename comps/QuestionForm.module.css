@@ -45,6 +45,15 @@
   padding: .5rem 1rem;
 }
 
+.question_error {
+
+  position: absolute;
+  top: 70%;
+  left: 1%;
+  font-size: 1.2rem;
+
+}
+
 .form_button {
   width: 40%;
   height: 100%;
