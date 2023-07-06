@@ -16,9 +16,10 @@
 }
 
 .info {
-  text-align: justify;
+  text-align: left;
   font-size: 20px;
-  margin: 0rem 0;
+  margin: 0;
+  padding: .5rem;
 }
 
 @media only screen and (min-width: 992px) {
