@@ -1,9 +1,9 @@
 .form_container {
   display: flex;
   flex-direction: row;
-  max-width: 90%;
+  max-width: 95%;
   min-height: 100px;
-  margin: 0 auto 1rem;
+  margin: 3.5rem auto;
 }
 
 .website_form {
