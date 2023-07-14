@@ -12,7 +12,7 @@ import { get_encoding, encoding_for_model } from '@dqbd/tiktoken';
 
 // to do's
 /*
-  enforce a token size limit for all requests being sent to ai 
+  enforce a token size limit for all requests being sent to ai
   update footer/social section (add structure and socials)
 */
 

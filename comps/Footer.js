@@ -1,11 +1,12 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import styles from './Footer.module.css'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.acknowledgements}>
 
-      <div className='footer_title'>g r a m m e r h u b</div>
       {/* <div className='footer_info'>KEEP IN TOUCH</div>
 
       <div className='follow_us'>Follow us at:
@@ -14,8 +15,24 @@ const Footer = () => {
         <box-icon name='linkedin' type='logo' ></box-icon>
       </div> */}
 
-      <div className='acknowledgements'>
-        <p>Built by: Zephyr, Steve, Andrea & Jake</p>
+      <h3 className={styles.footer_head}>Built by</h3>
+      <div className={styles.contact_list}>
+        <section className={styles.contact}>
+          <span className={styles.contact_name}>Steve</span>
+          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+        </section>
+        <section className={styles.contact}>
+          <span className={styles.contact_name}>Andrea</span>
+          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+        </section>
+        <section className={styles.contact}>
+          <span className={styles.contact_name}>Jake</span>
+          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+        </section>
+        <section className={styles.contact}>
+          <span className={styles.contact_name}>Zephyr</span>
+          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+        </section>
       </div>
     </footer>
   )

@@ -1,0 +1,55 @@
+.acknowledgements {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.footer_head {
+
+  margin: 0 0 1rem 1rem;
+  font-size: 2rem;
+
+}
+
+.contact_list {
+
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.contact {
+
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+
+}
+
+.contact_name {
+
+  font-size: 2.5rem;
+
+}
+
+/* .contact_icon {
+
+  font-size: 2rem;
+
+} */
+
+.contact_link {
+
+  width: 30%;
+  display: block;
+
+}
