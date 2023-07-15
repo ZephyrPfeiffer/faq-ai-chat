@@ -12,7 +12,7 @@ const Display = ({log, loading}) => {
 
   useEffect(() => {
 
-    bottomRef.current.scrollIntoView({ behavior: 'smooth' })
+    bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
 
   }, [log])
 
