@@ -95,8 +95,6 @@ server
 
         }
 
-        console.log(tokenSum)
-
         // const tokens = encoding.encode(filteredText.join(''))
         // console.log(tokens.length)
 				const docs = validDocuments.map(
