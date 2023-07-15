@@ -19,19 +19,19 @@ const Footer = () => {
       <div className={styles.contact_list}>
         <section className={styles.contact}>
           <span className={styles.contact_name}>Steve</span>
-          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+          <a className={styles.contact_link} href="https://www.linkedin.com/in/stevesmodish/" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>
         </section>
         <section className={styles.contact}>
           <span className={styles.contact_name}>Andrea</span>
-          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+          <a className={styles.contact_link} href="https://www.linkedin.com/in/andreaeverett/" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>
         </section>
         <section className={styles.contact}>
           <span className={styles.contact_name}>Jake</span>
-          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+          <a className={styles.contact_link} href="https://www.linkedin.com/in/jake-m-hatfield/" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>
         </section>
         <section className={styles.contact}>
           <span className={styles.contact_name}>Zephyr</span>
-          <a className={styles.contact_link} href="#"><FontAwesomeIcon icon={faLinkedin} /></a>
+          <a className={styles.contact_link} href="https://www.linkedin.com/in/zephyrpfeiffer/" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>
         </section>
       </div>
     </footer>
