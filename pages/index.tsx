@@ -56,7 +56,9 @@ export default function Experiment() {
 		setLoading(true);
 
 		const { question, website } = formData;
+    const pastLogState = [...log]
 
+    
 		setLog([...log, { question, answer: '' }]);
 
 		try {
@@ -70,7 +72,7 @@ export default function Experiment() {
 
 			if (res.status === 404) {
 				toast('Website not found');
-				setLog([...log]);
+				setLog([...pastLogState]);
 				return;
 			}
 
@@ -78,11 +80,16 @@ export default function Experiment() {
 
 			if (data.status === 400) {
 				toast('Unable to read website');
-				setLog([...log]);
+				setLog([...pastLogState]);
 				return;
 			}
 
-			setLog([...log, { question, answer: data.text }]);
+      if(!data.text) {
+        setLog([...pastLogState])
+      }else {
+        setLog([...log, { question, answer: data.text }]);
+      }
+
 		} catch (error) {
 			console.log(error.message);
 		} finally {
