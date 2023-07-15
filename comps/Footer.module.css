@@ -41,6 +41,10 @@
   display: block;
 }
 
+.contact_link:visited {
+  color: #0000ee;
+}
+
 @media only screen and (min-width: 600px) {
 
   .footer_head {
