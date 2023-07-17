@@ -15,8 +15,8 @@ const Footer = () => {
         <box-icon name='linkedin' type='logo' ></box-icon>
       </div> */}
 
-      <h3 className={styles.footer_head}>Built by</h3>
       <div className={styles.contact_list}>
+        <h3 className={styles.footer_head}>Built by</h3>
         <section className={styles.contact}>
           <span className={styles.contact_name}>Steve</span>
           <a className={styles.contact_link} href="https://www.linkedin.com/in/stevesmodish/" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>

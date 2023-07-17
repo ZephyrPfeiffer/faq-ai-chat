@@ -5,15 +5,17 @@
 }
 
 .footer_head {
-  margin: 0 0 1rem 1rem;
+  width: 100%;
+  margin: 0 0 1.5rem 0;
   font-size: 2rem;
+  text-align: center;
 }
 
 .contact_list {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -47,10 +49,6 @@
 
 @media only screen and (min-width: 600px) {
 
-  .footer_head {
-    margin: 0 auto 1.5rem auto;
-  }
-
   .contact {
     width: 20%;
   }
@@ -68,6 +66,7 @@
 @media only screen and (min-width: 992px) {
 
   .footer_head {
+    text-align: left;
     margin: 0 0 1rem 1rem;
   }
 
