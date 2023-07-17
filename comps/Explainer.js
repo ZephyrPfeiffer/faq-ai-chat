@@ -5,7 +5,7 @@ const Explainer = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Chatbox</h1>
-      <p className={styles.info}>Give us a website and a question, and we'll give you an answer!</p>
+      <p className={styles.info}>Give us a website and question about that website, and we'll give you an answer!</p>
     </div>
   )
 }
