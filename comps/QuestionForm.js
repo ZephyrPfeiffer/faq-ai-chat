@@ -7,7 +7,7 @@ const QuestionForm = ({ handleSubmit, onSubmit, register, errors }) => {
   return (
     <section className={styles.form_container}>
       <form className={styles.question_form} onSubmit={handleSubmit((data) => onSubmit(data))}>
-        <input id="question-input" type="text" className={styles.question_input} {...register("question")} placeholder="Question"/>
+        <textarea id="question-input" type="text" className={styles.question_input} {...register("question")} placeholder="Question (Max characters: 1200)" maxLength="1200"></textarea>
         <ErrorMessage
           errors={errors}
           name="question"
