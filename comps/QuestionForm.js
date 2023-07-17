@@ -7,7 +7,7 @@ const QuestionForm = ({ handleSubmit, onSubmit, register, errors }) => {
   return (
     <section className={styles.form_container}>
       <form className={styles.question_form} onSubmit={handleSubmit((data) => onSubmit(data))}>
-        <textarea id="question-input" type="text" className={styles.question_input} {...register("question")} placeholder="Question (Max characters: 1200)" maxLength="1200"></textarea>
+        <textarea id="question-input" type="text" className={styles.question_input} {...register("question")} placeholder="Question" maxLength="1200"></textarea>
         <ErrorMessage
           errors={errors}
           name="question"
@@ -15,6 +15,7 @@ const QuestionForm = ({ handleSubmit, onSubmit, register, errors }) => {
         />
         <input type="button" value="S u b m i t" className={styles.form_button} onClick={handleSubmit((data) => onSubmit(data))} />
       </form>
+      {/* <span className={styles.length_display}>Max characters: 1200</span> */}
     </section>
   )
 }
