@@ -56,7 +56,7 @@ export default function Experiment() {
 		setLoading(true);
 
 		const { question, website } = formData;
-    const pastLogState = [...log]
+    const pastLogState = [...log];
 
     
 		setLog([...log, { question, answer: '' }]);
@@ -92,6 +92,7 @@ export default function Experiment() {
 
 		} catch (error) {
 			console.log(error.message);
+      setLog([...pastLogState])
 		} finally {
 			setLoading(false);
 		}
