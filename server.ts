@@ -1,9 +1,10 @@
 // packages
 import dotenv from 'dotenv';
 import express from 'express';
-import { OpenAI } from 'langchain/llms/openai';
-import { loadQAChain } from 'langchain/chains';
-import { Document } from 'langchain/document';
+import { ChatOpenAI } from "@langchain/openai";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { RunnableSequence } from "@langchain/core/runnables";
+import { StringOutputParser } from "@langchain/core/output_parsers";
 import multer from 'multer';
 import next from 'next';
 import fetch from 'node-fetch';
@@ -95,32 +96,33 @@ server
 
         }
 
-        // const tokens = encoding.encode(filteredText.join(''))
-        // console.log(tokens.length)
-				const docs = validDocuments.map(
-					(pageContent) => new Document({ pageContent })
-				);
+        const context = filteredText.join('');
 
 				// // close Puppeteer
 				await browser.close();
 
 				// // instantiate the model (model: text-davinci-003)
-				const model = new OpenAI({
+				const model = new ChatOpenAI({
 					openAIApiKey: process.env.OPENAI_API_KEY,
 					temperature: 0.9,
-					concurrency: 10,
 					cache: true,
 				});
 
-				const chain = loadQAChain(model);
+        const promptTemplate = PromptTemplate.fromTemplate(
+          "Use the following pieces of context provided from a website to answer a question about the website at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer. Context: {context} Question: {question}"
+        )
 
-				// // evaluate the data
-				const data = await chain.call({
-					question,
-					input_documents: docs,
-				});
+        const outputParser = new StringOutputParser();
 
-				res.send(data);
+        const chain = RunnableSequence.from([promptTemplate, model, outputParser]);
+
+				// // Create a request to open ai and retrieve response data
+				const data = await chain.invoke({
+          context: context,
+          question: question,
+        })
+
+				res.json(data);
 			} catch (error) {
 				console.error('Error occurred handling', req.url);
 				console.log(error);
