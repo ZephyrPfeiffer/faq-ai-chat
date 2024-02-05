@@ -78,16 +78,16 @@ export default function Experiment() {
 
 			const data = await res.json();
 
-			if (data.status === 400) {
+			if (!data) {
 				toast('Unable to read website');
 				setLog([...pastLogState]);
 				return;
 			}
 
-      if(!data.text) {
+      if(!data) {
         setLog([...pastLogState])
       }else {
-        setLog([...log, { question, answer: data.text }]);
+        setLog([...log, { question, answer: data }]);
       }
 
 		} catch (error) {
