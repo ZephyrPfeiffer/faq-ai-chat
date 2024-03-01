@@ -56,8 +56,9 @@ export default function Experiment() {
 		setLoading(true);
 
 		const { question, website } = formData;
-    const pastLogState = [...log];
 
+    // current log state is stored in case we need to go back to it
+    const pastLogState = [...log];
     
 		setLog([...log, { question, answer: '' }]);
 
@@ -69,6 +70,12 @@ export default function Experiment() {
 				},
 				body: JSON.stringify({ question, website }),
 			});
+
+      if(res.status === 403) {
+        toast('Website not accessible');
+        setLog([...pastLogState])
+        return;
+      }
 
 			if (res.status === 404) {
 				toast('Website not found');
@@ -84,11 +91,8 @@ export default function Experiment() {
 				return;
 			}
 
-      if(!data) {
-        setLog([...pastLogState])
-      }else {
-        setLog([...log, { question, answer: data }]);
-      }
+      setLog([...log, { question, answer: data }]);
+
 
 		} catch (error) {
 			console.log(error.message);
