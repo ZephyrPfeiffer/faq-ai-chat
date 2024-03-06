@@ -80,8 +80,8 @@ server
 				const filteredText = text.match(/(.+?\.)|(.+?\?)/g);
 
         // reduce size of filtered text to be under token limit (if above token limit) for ai being used
-        const encoding = encoding_for_model("text-davinci-003");
-        const tokenLimit = 3500;
+        const encoding = encoding_for_model("gpt-3.5-turbo");
+        const tokenLimit = 15000;
         let tokenSum = 0;
         let validDocuments = [];
 
@@ -102,9 +102,10 @@ server
 				// // close Puppeteer
 				await browser.close();
 
-				// // instantiate the model (model: text-davinci-003)
+				// // instantiate the model
 				const model = new ChatOpenAI({
 					openAIApiKey: process.env.OPENAI_API_KEY,
+          modelName: "gpt-3.5-turbo",
 					temperature: 0.9,
 					cache: true,
 				});
