@@ -48,8 +48,9 @@ server
       try {
 
         const websiteResponse = await fetch(website);
+        if(websiteResponse.status === 403) return res.status(403).json('Website not accessible');
         if (!websiteResponse.ok) return res.status(404).json('Website not found');
-
+        
       }catch(error) {
         return res.status(404).json('Website not found');
       }
