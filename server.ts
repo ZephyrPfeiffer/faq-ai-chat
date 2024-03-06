@@ -81,7 +81,7 @@ server
 
         // reduce size of filtered text to be under token limit (if above token limit) for ai being used
         const encoding = encoding_for_model("gpt-3.5-turbo");
-        const tokenLimit = 15000;
+        const tokenLimit = 4000;
         let tokenSum = 0;
         let validDocuments = [];
 
